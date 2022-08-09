@@ -33,6 +33,7 @@ const handleInput = (e: any) => {
     <div class="flex flex-col w-full gap-2">
       <label for="name" class="font-medium text-sm">{{ label }}</label>
       <input
+        :autocomplete="type"
         :type="type"
         :name="name"
         class="w-full px-4 py-2 outline-none border-none rounded bg-fg text-base text-text placeholder:text-fgVar transition-all ring-transparent ring-1 focus:ring-primary"
