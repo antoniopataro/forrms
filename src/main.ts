@@ -12,9 +12,9 @@ import { createRouter, createWebHistory } from "vue-router";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", name: "Home", component: Home },
-    { path: "/about", name: "About", component: About },
-    { path: "/technologies", name: "Technologies", component: Technologies },
+    { path: "/forrms/", name: "Home", component: Home },
+    { path: "/forrms/about", name: "About", component: About },
+    { path: "/forrms/technologies", name: "Technologies", component: Technologies },
   ],
 });
 
