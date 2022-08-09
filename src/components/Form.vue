@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import Input from "./Input.vue";
+import Range from "./Range.vue";
 import Textarea from "./Textarea.vue";
 </script>
 
 <template>
   <form class="flex flex-col w-1/3 gap-16 py-16 mx-auto my-0">
     <ul
-      class="relative flex flex-col w-full gap-16 before:absolute before:content-[''] before:z-[1] before:top-6 before:left-3 before:w-[1px] before:h-[calc(100%-24px)] before:mx-auto before:my-0 before:bg-fg"
+      class="relative flex flex-col w-full gap-16 before:absolute before:content-[''] before:z-[-1] before:top-6 before:left-3 before:w-[1px] before:h-[calc(100%-24px)] before:mx-auto before:my-0 before:bg-fg"
     >
       <span class="flex flex-col w-full gap-6 my-0 mx-auto">
         <Input number="1" label="Your name" placeholder="Antonio Pataro" name="name" type="name"></Input>
@@ -33,6 +34,9 @@ import Textarea from "./Textarea.vue";
           name="feedback"
           type="text"
         ></Textarea>
+      </span>
+      <span>
+        <Range name="positiveness" number="5" min="0" max="50" step="1" label="How positive you are?" />
       </span>
     </ul>
     <span class="flex w-full justify-end gap-4">
