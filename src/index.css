@@ -1,0 +1,31 @@
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter var", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+code {
+  font-family: "Fira code", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  padding: 2px 4px;
+
+  border-radius: 4px;
+
+  background-color: #242424;
+}
