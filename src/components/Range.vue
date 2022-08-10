@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-defineProps({
+const props = defineProps({
   name: String,
   number: String,
   min: String,
@@ -10,7 +10,7 @@ defineProps({
   label: String,
 });
 
-const value = ref(10);
+const value = ref(props.max);
 const isValid = ref();
 
 const handleRange = (e: any) => {
