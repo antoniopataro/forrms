@@ -2,6 +2,8 @@
 import Input from "./Input.vue";
 import Range from "./Range.vue";
 import Textarea from "./Textarea.vue";
+import Checkbox from "./Checkbox.vue";
+import Radio from "./Radio.vue";
 </script>
 
 <template>
@@ -37,6 +39,12 @@ import Textarea from "./Textarea.vue";
       </span>
       <span>
         <Range name="positiveness" number="5" min="0" max="50" step="1" label="How positive you are?" />
+      </span>
+      <span class="flex flex-col">
+        <Checkbox number="6" label="Pick those that you identify with"></Checkbox>
+      </span>
+      <span class="flex flex-col">
+        <Radio number="7" label="Pick the one you like most"></Radio>
       </span>
     </ul>
     <span class="flex w-full justify-end gap-4">
