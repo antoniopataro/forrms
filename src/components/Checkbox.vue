@@ -12,29 +12,19 @@ defineProps({
   number: String,
   label: String,
   placeholder: String,
+    ml:String
 });
 
 const options: Ref<OptionProps[]> = ref([
   {
-    label: "A",
+    label: "OUI",
     checked: false,
   },
   {
-    label: "B",
+    label: "NON",
     checked: false,
   },
-  {
-    label: "C",
-    checked: false,
-  },
-  {
-    label: "D",
-    checked: false,
-  },
-  {
-    label: "E",
-    checked: false,
-  },
+
 ]);
 
 const isValid = ref();
@@ -58,7 +48,7 @@ const handleChecked = (option: OptionProps) => {
       :class="{ 'ring-primary': isValid }"
       >{{ number }}</span
     >
-    <div class="flex flex-col w-fit gap-1">
+    <div class="flex flex-col w-fit gap-1" :class="ml ? 'ml-' +ml : 'ml-2'">
       <label for="name" class="w-fit pb-4 font-medium text-sm">{{ label }}</label>
       <CheckboxOption
         v-for="option in options"
