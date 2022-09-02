@@ -1,19 +1,27 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref,watch } from "vue";
 
-defineProps({
+const props = defineProps({
   type: String,
   name: String,
   number: String,
   label: String,
   placeholder: String,
-  ml:String
+  ml:String,
+  modelValue:String,
+  
 });
 
 const isValid = ref();
-
+const input = ref('0')
+const emit = defineEmits(['update:modelValue', 'eventB'])
+watch(input,(val)=>{
+  console.log("emiting input",val)
+  emit('update:modelValue',val)
+})
 const handleInput = (e: any) => {
-  const input = e.target.value;
+  
+  input.value = e.target.value;
 
   if (!input) {
     isValid.value = false;
@@ -22,6 +30,10 @@ const handleInput = (e: any) => {
 
   isValid.value = true;
 };
+watch(() => props.modelValue, (val)=>{
+  console.log("ModelValue",val)
+  input.value = val + ''
+},{immediate:true})
 </script>
 
 <template>
@@ -41,6 +53,7 @@ const handleInput = (e: any) => {
         :class="{ 'outline-offset-0 outline-1 outline-primary': isValid }"
         @blur="handleInput"
         :placeholder="placeholder"
+        v-model="input"
       />
     </div>
   </li>

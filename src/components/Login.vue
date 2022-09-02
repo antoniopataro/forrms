@@ -6,22 +6,23 @@
 
         <form class="mt-6">
             <div>
-                <label for="email" class="block text-sm text-gray-800">Email</label>
-                <input type="email"
+                <label for="email" class="block text-sm text-gray-800" >Login</label>
+                <input type="phone" v-model="phoneNumber"
                     class="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40">
                     
             </div>
             <div class="mt-4">
                 <div>
-                    <label for="password" class="block text-sm text-gray-800">Password</label>
-                    <input type="password"
+                    <label for="password" class="block text-sm text-gray-800" >Mot de passe</label>
+                    <input type="password" v-model="password"
                         class="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40">
                 </div>
                 <a href="#" class="text-xs text-gray-600 hover:underline">Forget Password?</a>
                 <div class="mt-6">
                     <button
-                        class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
-                        <router-link to="/forrms" tag="button">Se connecter</router-link>
+                    @click.prevent="() => login()"
+                        class="w-full text-white px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+                        Se connecter
                     </button>
                 </div>
                 </div>
@@ -31,3 +32,17 @@
     </div>
 </div>
 </template>
+<script setup lang="ts">
+import { ref } from "vue"
+import { useStore } from "vuex"
+
+
+const phoneNumber = ref("782908626")
+const password = ref('3008966957')
+const store = useStore()
+const login = ()=> {
+    console.log("login in")
+    store.dispatch('login',{phoneNumber : phoneNumber.value,password : password.value})
+}
+
+</script>

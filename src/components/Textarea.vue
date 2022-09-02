@@ -1,26 +1,38 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref,watch } from "vue";
 
-defineProps({
+const props = defineProps({
   type: String,
   name: String,
   number: String,
   label: String,
   placeholder: String,
+  modelValue: String,
 });
 
 const isValid = ref();
+const input = ref('')
+const emit = defineEmits(['update:modelValue', 'eventB'])
+watch(input,(val)=>{
+  console.log("emiting input",val)
+  emit('update:modelValue',val)
+})
 
 const handleTextarea = (e: any) => {
-  const input = e.target.value;
+  input.value = e.target.value;
 
-  if (!input) {
+  if (!input.value) {
     isValid.value = false;
     return;
   }
+  
 
   isValid.value = true;
 };
+watch(() => props.modelValue, (val)=>{
+  console.log("ModelValue",val)
+  input.value = val + ''
+},{immediate:true})
 </script>
 
 <template>
