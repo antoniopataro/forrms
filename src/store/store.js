@@ -52,7 +52,7 @@ const api = axios.create({
     
 }
 const getters = {
-    isLogged(){
+    isLogged(state){
       console.log(!!tokenService.getLocalAccessToken())
         return !!tokenService.getLocalAccessToken()
     },
@@ -62,10 +62,11 @@ const getters = {
     }
 }
 const mutations = {
-    setLoading(bool){
+    setLoading(state,bool){
+      console.log("set laoding",bool)
         state.loading = bool
     },
-    setUser(user){
+    setUser(state,user){
         state.user = user
     }
 }
@@ -90,12 +91,13 @@ const actions = {
         }
         
     },
-    async logOut({commit,dispatch}){
+    async logout({commit,dispatch}){
         try{
             commit('setLoading',true)
-            await api.post('/auth/logout',payload)
+            tokenService.removeUser()
+            await api.post('/auth/signout')
   
-            tokenService.setUser(null)
+            
 
         }
         catch(error){
