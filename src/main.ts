@@ -10,6 +10,10 @@ import Login from "./components/Login.vue"
 import { createRouter, createWebHistory } from "vue-router";
 import {createStore} from 'vuex'
 import Store from './store/store.js'
+// In you main.js
+// ... considering that your app creation is here
+import Toaster from "@meforma/vue-toaster";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -19,6 +23,7 @@ const router = createRouter({
 const store = createStore(Store)
 
 const app = createApp(App);
+app.use(Toaster).provide('toast', app.config.globalProperties.$toast);
 app.use(store)
 app.use(router);
 app.mount("#app");

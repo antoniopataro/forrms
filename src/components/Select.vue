@@ -16,11 +16,12 @@ const isValid = ref();
 const input = ref('')
 const emit = defineEmits(['update:modelValue'])
 watch(input,(val)=>{
-  emit('update:modelValue',val)
+  emit('update:modelValue',val?.toLowerCase())
+
 })
 const handleInput = (e: any) => {
   
-  input.value = e;
+  input.value = e?.target?.value || e;
 
   if (!input) {
     isValid.value = false;
@@ -31,7 +32,7 @@ const handleInput = (e: any) => {
 };
 watch(() => props.modelValue, (val)=>{
   console.log("ModelValue",val)
-  input.value = val + ''
+  input.value = val
 },{immediate:true})
 
 </script>
@@ -51,7 +52,9 @@ watch(() => props.modelValue, (val)=>{
         @change="handleInput"
         :placeholder="placeholder"
       >
-        <option v-for="option in options" selected="false" :key="option">{{option}}</option>
+        <option disabled :selected="!value" value > -- Selectionnez une option -- </option>
+        <option v-for="option in options" :selected="option === input" :key="option">{{option}}</option>
+        
       </select>
     </div>
   </li>

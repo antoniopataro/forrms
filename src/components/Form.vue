@@ -50,9 +50,9 @@
             'HOGIP',
             'CHAN',
             'CHPK',
-            'PRIVE',
-            'CENTRE DE SANTE',
-            'REGION',
+            'PRIVÉ',
+            'CENTRE DE SANTÉ',
+            'RÉGION',
           ]"
         ></Select>
         <Select
@@ -61,9 +61,11 @@
           label="Medecin demandeur"
           placeholder="XXXX"
           name="name"
-          :options="['UROLOGUE', 'GENRALISTE', 'AUTRES']"
+          :options="['UROLOGUE', 'GENERALISTE', 'AUTRES']"
         ></Select>
+        <Input label="Numéro de téléphone" v-model="mri.phoneNumber"></Input>
         <Title></Title>
+        
       </span>
       <span class="flex flex-col w-full gap-6 my-0 mx-auto">
         <Title label="INDICATIONS CLINIQUES"></Title>
@@ -73,11 +75,11 @@
           label="TR"
           placeholder="XXXX"
           name="name"
-          :options="['PROSTATE SUPECTÉ', 'PROSTATE D ASPECT NORMAL']"
+          :options="['PROSTATE SUPECTÉ', 'PROSTATE ASPECT NORMAL']"
         ></Select>
         <Checkbox v-model="mri.sbau" number="2" label="SBAU"></Checkbox>
         <Checkbox
-          v-model="mri.algi_osseurse_diffuse"
+          v-model="mri.algie_osseuse_diffuse"
           number="3"
           label="Algie Osseuse Diffuse"
         ></Checkbox>
@@ -87,7 +89,7 @@
           label="Compression médullaire"
         ></Checkbox>
         <Textarea
-          v-model="mri.others"
+          v-model="mri.Others"
           number="5"
           label="Autres"
           placeholder="Type here also..."
@@ -98,7 +100,7 @@
         <Title label="Indications Paracliniques"></Title>
 
         <Input
-          v-model="mri.psa_total"
+          v-model="mri.PSA_total"
           number="1"
           label="PSA Total"
           placeholder="XXXX"
@@ -112,7 +114,7 @@
           label="Aspect de la prostate"
           placeholder="XXXX"
           name="name"
-          :options="['HÉTÉROGENE', 'HOMOGÉNE']"
+          :options="['HÉTÉROGÉNE', 'HOMOGÉNE']"
         ></Select>
         <Checkbox
           v-model="mri.calcification"
@@ -125,7 +127,7 @@
           label="Aspect de la prostate"
           placeholder="XXXX"
           name="name"
-          :options="['RÉGULIER', 'IRRÉGULIER']"
+          :options="['REGULIER', 'IRREGULIER']"
         ></Select>
         <Input
           v-model="mri.echo_prostate_volume"
@@ -141,7 +143,7 @@
           label="Nodule"
           placeholder="XXXX"
           name="name"
-          :options="['PRÉSENT', 'ABSENT']"
+          :options="['PRESENT', 'ABSENT']"
         ></Select>
         <Title></Title>
         <Title label="TDM"></Title>
@@ -183,7 +185,7 @@
           label="Présence de l'adénopathie"
           placeholder="XXXX"
           name="name"
-          :options="['ILIAQUE', 'ILIO OBTURATEUR', 'MEDIASTONAL']"
+          :options="['ILIAQUE', 'ILIO OBTURATEUR', 'MÉDIASTONAL']"
         ></Select>
         <Title></Title>
         <Title label="IRM"></Title>
@@ -254,7 +256,6 @@
     <span class="flex w-full justify-end gap-4">
       <button
       @click.prevent="initMri"
-        disabled
         class="
           px-4
           py-2
@@ -262,7 +263,6 @@
           bg-fg
           font-semibold
           text-sm
-          cursor-pointer
           transition-colors
           hover:bg-fgVar
         "
@@ -272,7 +272,7 @@
       <button
 
         @click.prevent="submitMri"
-        :disabled="!mri.isValid"
+        :disabled="!mri.isValid()"
         class="
           px-4
           py-2
@@ -280,9 +280,9 @@
           bg-primary
           font-semibold
           text-sm
-          cursor-pointer
           transition-colors
           hover:bg-primaryVar
+          disabled
         "
       >
         Enregistrer
@@ -300,12 +300,13 @@ import Radio from "./Radio.vue";
 import Select from "./Select.vue";
 import Title from "./Title.vue";
 import { MRI } from "../models/mri";
-import { computed, ref,watch } from "vue";
+import { computed, inject, ref,watch } from "vue";
 import { useStore } from "vuex";
 
 const mri = ref(new MRI());
+//mri.value.test()
 const strore = useStore()
-
+const toast = inject('toast')
 
 watch
   (mri,
@@ -317,8 +318,26 @@ watch
     mri.value = new MRI()
   }
   const submitMri  = async() =>{
-    await strore.dispatch('addMri',mri.value)
-    initMri()
+    try{
+      
+      
+      await strore.dispatch('addMri',mri.value.toLowerCase()).then(()=>{
+            initMri()
+            toast.success("Fiche enregistré avec succes")
+
+      })
+
+
+    }
+    catch(err){
+
+    }
+
+    
   }
 
 </script>
+
+<style scoped>
+
+</style>

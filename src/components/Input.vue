@@ -32,7 +32,7 @@ const handleInput = (e: any) => {
 };
 watch(() => props.modelValue, (val)=>{
   console.log("ModelValue",val)
-  input.value = val + ''
+  input.value = val
 },{immediate:true})
 </script>
 

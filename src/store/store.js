@@ -1,6 +1,7 @@
 import axios from "axios"
+import { inject } from "vue"
 import tokenService from "../services/tokenService"
-
+const toast = inject('toast')
 const api = axios.create({
     baseURL: 'http://104.131.183.104:4000/api',
     headers: {
@@ -68,15 +69,17 @@ const mutations = {
 const actions = {
     async login({commit,dispatch},payload){
         try{
+          
             commit('setLoading',true)
             const user= (await api.post('/auth/signin',payload)).data
             console.log("Logged in user",user)
             commit('setUser',user)
             tokenService.setUser(user)
-
+            return Promise.resolve(user)
         }
         catch(error){
             console.error(error)
+            return Promise.reject(error)
         }
         finally{
             commit('setLoading',false)
@@ -103,11 +106,13 @@ const actions = {
     async addMri({commit,dispatch},payload){
         try{
             commit('setLoading',true)
-            await api.post('/mri/createmri',payload)
-
+            const response = await api.post('/mri/createmri',payload)
+            return Promise.resolve(response)
         }
         catch(error){
+          
             console.error(error)
+            return Promise.reject(error)
         }
         finally{
             commit('setLoading',false)

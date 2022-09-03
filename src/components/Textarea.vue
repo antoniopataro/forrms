@@ -31,7 +31,7 @@ const handleTextarea = (e: any) => {
 };
 watch(() => props.modelValue, (val)=>{
   console.log("ModelValue",val)
-  input.value = val + ''
+  input.value = val
 },{immediate:true})
 </script>
 
@@ -51,6 +51,7 @@ watch(() => props.modelValue, (val)=>{
         :class="{ 'outline-offset-0 outline-1 outline-primary': isValid }"
         @blur="handleTextarea"
         :placeholder="placeholder"
+        v-model="input"
       />
     </div>
   </li>

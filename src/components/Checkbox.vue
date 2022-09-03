@@ -12,9 +12,8 @@ const props = defineProps({
   number: String,
   label: String,
   placeholder: String,
-    ml:String,
-    modelProp : String,
-    modelValue : String
+  ml:String,
+  modelValue : String
 });
 
 const options: Ref<OptionProps[]> = ref([
@@ -33,23 +32,34 @@ const isValid = ref();
 const input = ref('')
 const emit = defineEmits(['update:modelValue', 'eventB'])
 watch(input,(val)=>{
-  console.log("emiting input",val)
+  console.log("emiting input checkbox",val)
+
+    options.value = options.value.map((item) => {
+      
+    if (item.label === val) {
+      return { ...item, checked: true };
+    }
+    return { ...item, checked: false};
+  });
   emit('update:modelValue',val)
+  isValid.value = options.value.find((option) => option.checked === true);
+
 })
 
 const handleChecked = (option: OptionProps) => {
   options.value = options.value.map((item) => {
-    if (item === option) {
-      return { ...item, checked: !item.checked };
+    if (item.label === option.label) {
+      return { ...item, checked: true };
     }
-    return item;
+    return { ...item, checked: false};
   });
   input.value = option.label
   isValid.value = options.value.find((option) => option.checked === true);
 };
 watch(() => props.modelValue, (val)=>{
-  console.log("ModelValue",val)
-  input.value = val + ''
+  console.log("ModelValue checkbox",val)
+  input.value = val
+  
 },{immediate:true})
 </script>
 

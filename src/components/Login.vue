@@ -37,12 +37,13 @@ import { ref } from "vue"
 import { useStore } from "vuex"
 
 
-const phoneNumber = ref("782908626")
-const password = ref('3008966957')
+const phoneNumber = ref("")
+const password = ref('')
 const store = useStore()
 const login = ()=> {
     console.log("login in")
     store.dispatch('login',{phoneNumber : phoneNumber.value,password : password.value})
+
 }
 
 </script>
