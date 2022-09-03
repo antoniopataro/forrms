@@ -9,6 +9,7 @@ const props = defineProps({
   placeholder: String,
   ml:String,
   modelValue:String,
+  length : Number
   
 });
 
@@ -27,7 +28,7 @@ const handleInput = (e: any) => {
     return;
   }
 
-  isValid.value = true;
+  isValid.value = props.length ? input.value.length === props.length ? true : false :  true;
 };
 watch(() => props.modelValue, (val)=>{
   input.value = val

@@ -53,7 +53,8 @@ const api = axios.create({
 }
 const getters = {
     isLogged(){
-        return tokenService.getLocalAccessToken()
+      console.log(!!tokenService.getLocalAccessToken())
+        return !!tokenService.getLocalAccessToken()
     }
 }
 const mutations = {

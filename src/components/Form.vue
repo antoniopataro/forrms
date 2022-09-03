@@ -70,7 +70,8 @@
           placeholder="XXXX"
           name="name"
           :options="[
-      'urologue' , 'generaliste' , 'autres'
+      'prostate suspecté',
+        'prostate aspect normal'
     ]"
         ></Select>
         <Checkbox v-model="mri.sbau" number="2" label="SBAU"></Checkbox>
@@ -277,17 +278,9 @@
 
         @click.prevent="submitMri"
         :disabled="!mri.isValid()"
-        class="
-          px-4
-          py-2
-          rounded
-          bg-primary
-          font-semibold
-          text-sm
-          transition-colors
-          hover:bg-primaryVar
-          disabled
-        "
+        :class="{
+          'px-4 py-2 rounded bg-primary font-semibold text-sm transition-colors hover:bg-primaryVar disabled' : mri.isValid()
+        }"
       >
         Enregistrer
       </button>
@@ -308,7 +301,7 @@ import { computed, inject, ref,watch } from "vue";
 import { useStore } from "vuex";
 
 const mri = ref(new MRI());
-//mri.value.test()
+mri.value.test()
 const strore = useStore()
 const toast = inject('toast')
 

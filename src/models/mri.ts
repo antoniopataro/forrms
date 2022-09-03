@@ -33,37 +33,37 @@ export  class MRI{
   test()
   {
     this.parse({
-      years: "2019",
-      age: "10",
-      phoneNumber: "1212334",
-      requesting_hospital: "HPD",
-      requesting_doctor: "UROLOGUE",
-      tr: "PROSTATE SUPECTÉ",
-      sbau: "OUI",
-      algie_osseuse_diffuse: "OUI",
-      compression_medullaire: "OUI",
+      years: "4",
+      age: "12",
+      phoneNumber: "112",
+      requesting_hospital: "chpk",
+      requesting_doctor: "urologue",
+      tr: "autres",
+      sbau: "oui",
+      algie_osseuse_diffuse: "oui",
+      compression_medullaire: "oui",
       Others: "12",
-      PSA_total: "12",
-      echographic_aspect_prostate: "HÉTÉROGENE",
-      calcification: "OUI",
-      contours: "RÉGULIER",
+      PSA_total: "11",
+      echographic_aspect_prostate: "hétérogéne",
+      calcification: "oui",
+      contours: "regulier",
       echo_prostate_volume: "12",
-      nodule: "PRÉSENT",
+      nodule: "absent",
       tdm_prostate_volume: "12",
       density_prostate: "12",
-      invasion_local: "OUI",
-      invasion_locoregional: "OUI",
-      invasion_distant: "OUI",
-      adénopathie: "ILIAQUE",
+      invasion_local: "oui",
+      invasion_locoregional: "oui",
+      invasion_distant: "oui",
+      adénopathie: "ilio obturateur",
       irm_prostate_volume: "12",
-      suspected_leisure: "OUI",
-      suspected_leisure_siege: "11",
+      suspected_leisure: "oui",
+      suspected_leisure_siege: "12",
       suspected_leisure_taille: "12",
       suspected_leisure_pirads: "12",
-      suspected_leisure_effractioncapsulaire: "OUI",
-      suspected_leisure_atteintevs: "OUI",
-      suspected_leisure_adenopathies: "OUI",
-      extension: "10"
+      suspected_leisure_effractioncapsulaire: "oui",
+      suspected_leisure_atteintevs: "oui",
+      suspected_leisure_adenopathies: "oui",
+      extension: "12"
     })
   }
   parse(object){
@@ -74,7 +74,7 @@ export  class MRI{
   isValid(){
     return Object.entries(this).every(([key,value]) =>{
       return !!value
-    })
+    }) && this.phoneNumber.length === 9
   }
   toLowerCase(){
     const toRet = new MRI()

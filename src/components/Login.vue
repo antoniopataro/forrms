@@ -22,6 +22,9 @@
                     <button
                     @click.prevent="() => login()"
                         class="w-full text-white px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+  <div v-if="isLoadding" class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-red-500" role="status">
+    <span class="visually-hidden">o</span>
+  </div>
                         Se connecter
                     </button>
                 </div>
@@ -33,18 +36,21 @@
 </div>
 </template>
 <script setup lang="ts">
-import { inject, ref } from "vue"
+import { computed, inject, ref } from "vue"
 import { useStore } from "vuex"
 const toast = inject('toast')
-
+const emit = defineEmits(['logged'])
 const phoneNumber = ref("")
 const password = ref('')
 const store = useStore()
+const isLoadding = computed(() => store.state.isLoadding)
 const login = ()=> {
     store.dispatch('login',{phoneNumber : phoneNumber.value,password : password.value}).then(()=>{
          toast.success("Connection réussi")
+          emit('logged')
     }).catch((err)=>{
          toast.error("Login ou mot de passe incorrect")
+        
     })
 
 }
