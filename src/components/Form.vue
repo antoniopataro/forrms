@@ -45,15 +45,9 @@
           placeholder="XXXX"
           name="name"
           :options="[
-            'HPD',
-            'HALD',
-            'HOGIP',
-            'CHAN',
-            'CHPK',
-            'PRIVÉ',
-            'CENTRE DE SANTÉ',
-            'RÉGION',
-          ]"
+      'hpd' , 
+      'hald' ,'hogip' , 'chan' , 'chpk' , 'privé' , 'centre de santé' , 'région'
+    ]"
         ></Select>
         <Select
           v-model="mri.requesting_doctor"
@@ -75,7 +69,9 @@
           label="TR"
           placeholder="XXXX"
           name="name"
-          :options="['PROSTATE SUPECTÉ', 'PROSTATE ASPECT NORMAL']"
+          :options="[
+      'urologue' , 'generaliste' , 'autres'
+    ]"
         ></Select>
         <Checkbox v-model="mri.sbau" number="2" label="SBAU"></Checkbox>
         <Checkbox
@@ -114,7 +110,9 @@
           label="Aspect de la prostate"
           placeholder="XXXX"
           name="name"
-          :options="['HÉTÉROGÉNE', 'HOMOGÉNE']"
+          :options="[
+      'hétérogéne', 'homogéne'
+    ]"
         ></Select>
         <Checkbox
           v-model="mri.calcification"
@@ -127,7 +125,9 @@
           label="Aspect de la prostate"
           placeholder="XXXX"
           name="name"
-          :options="['REGULIER', 'IRREGULIER']"
+          :options="[
+      'regulier', 'irregulier'
+    ]"
         ></Select>
         <Input
           v-model="mri.echo_prostate_volume"
@@ -143,7 +143,9 @@
           label="Nodule"
           placeholder="XXXX"
           name="name"
-          :options="['PRESENT', 'ABSENT']"
+          :options="[
+      'present', 'absent'
+    ]"
         ></Select>
         <Title></Title>
         <Title label="TDM"></Title>
@@ -185,7 +187,9 @@
           label="Présence de l'adénopathie"
           placeholder="XXXX"
           name="name"
-          :options="['ILIAQUE', 'ILIO OBTURATEUR', 'MÉDIASTONAL']"
+          :options="[
+        'iliaque' ,'ilio obturateur', 'médiastinal'
+    ]"
         ></Select>
         <Title></Title>
         <Title label="IRM"></Title>
@@ -311,7 +315,6 @@ const toast = inject('toast')
 watch
   (mri,
   (val) => {
-    console.log("change",val)
     /* ... */
   },{deep:true})
   const initMri = () =>{

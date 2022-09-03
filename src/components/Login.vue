@@ -33,16 +33,19 @@
 </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue"
+import { inject, ref } from "vue"
 import { useStore } from "vuex"
-
+const toast = inject('toast')
 
 const phoneNumber = ref("")
 const password = ref('')
 const store = useStore()
 const login = ()=> {
-    console.log("login in")
-    store.dispatch('login',{phoneNumber : phoneNumber.value,password : password.value})
+    store.dispatch('login',{phoneNumber : phoneNumber.value,password : password.value}).then(()=>{
+         toast.success("Connection réussi")
+    }).catch((err)=>{
+         toast.error("Login ou mot de passe incorrect")
+    })
 
 }
 

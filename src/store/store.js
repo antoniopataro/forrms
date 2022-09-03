@@ -28,7 +28,6 @@ const api = axios.create({
       return res
     },
     async (err) => {
-        console.error(err)
       const originalConfig = err.config
       if (err?.response?.status === 403 || originalConfig?._retry) {
         EventBus.dispatch('logout')

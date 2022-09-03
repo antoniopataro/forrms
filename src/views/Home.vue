@@ -7,7 +7,7 @@ import { useStore } from "vuex";
 const store = useStore()
 
 const isLogged = computed(() => store.getters.isLogged)
-console.log("isLogged",isLogged.value)
+
 </script>
 
 <template>

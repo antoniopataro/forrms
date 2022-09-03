@@ -31,7 +31,6 @@ const handleInput = (e: any) => {
   isValid.value = true;
 };
 watch(() => props.modelValue, (val)=>{
-  console.log("ModelValue",val)
   input.value = val
 },{immediate:true})
 
@@ -53,7 +52,7 @@ watch(() => props.modelValue, (val)=>{
         :placeholder="placeholder"
       >
         <option disabled :selected="!value" value > -- Selectionnez une option -- </option>
-        <option v-for="option in options" :selected="option === input" :key="option">{{option}}</option>
+        <option v-for="option in options" :selected="option === input" :key="option">{{option?.toUpperCase()}}</option>
         
       </select>
     </div>

@@ -32,7 +32,6 @@ const isValid = ref();
 const input = ref('')
 const emit = defineEmits(['update:modelValue', 'eventB'])
 watch(input,(val)=>{
-  console.log("emiting input checkbox",val)
 
     options.value = options.value.map((item) => {
       
@@ -57,7 +56,6 @@ const handleChecked = (option: OptionProps) => {
   isValid.value = options.value.find((option) => option.checked === true);
 };
 watch(() => props.modelValue, (val)=>{
-  console.log("ModelValue checkbox",val)
   input.value = val
   
 },{immediate:true})

@@ -73,7 +73,6 @@ export  class MRI{
   }
   isValid(){
     return Object.entries(this).every(([key,value]) =>{
-        console.log(key,value,!!value)
       return !!value
     })
   }
@@ -81,7 +80,6 @@ export  class MRI{
     const toRet = new MRI()
     Object.keys(this).forEach((key) =>{
       toRet[key] =this[key]?.toLowerCase();
-      console.log("Lowering",key,this[key])
       
     })
     return toRet

@@ -16,7 +16,6 @@ const isValid = ref();
 const input = ref('0')
 const emit = defineEmits(['update:modelValue', 'eventB'])
 watch(input,(val)=>{
-  console.log("emiting input",val)
   emit('update:modelValue',val)
 })
 const handleInput = (e: any) => {
@@ -31,7 +30,6 @@ const handleInput = (e: any) => {
   isValid.value = true;
 };
 watch(() => props.modelValue, (val)=>{
-  console.log("ModelValue",val)
   input.value = val
 },{immediate:true})
 </script>
