@@ -55,6 +55,10 @@ const getters = {
     isLogged(){
       console.log(!!tokenService.getLocalAccessToken())
         return !!tokenService.getLocalAccessToken()
+    },
+    isLoading(state){
+      console.log("Is laoding",state.isLoading)
+      return state.loading
     }
 }
 const mutations = {

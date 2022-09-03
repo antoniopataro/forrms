@@ -43,7 +43,7 @@ const emit = defineEmits(['logged'])
 const phoneNumber = ref("")
 const password = ref('')
 const store = useStore()
-const isLoadding = computed(() => store.state.isLoadding)
+const isLoadding = computed(() => store.getters.isLoading)
 const login = ()=> {
     store.dispatch('login',{phoneNumber : phoneNumber.value,password : password.value}).then(()=>{
          toast.success("Connection réussi")
