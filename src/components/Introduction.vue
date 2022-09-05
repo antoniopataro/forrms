@@ -5,7 +5,7 @@
     <h1
       class="text-center py-3 font-extrabold text-6xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-primaryVar"
     >
-      Forrms: Delightful Front-End Forms
+      Formulaire de recueil IRM prostatique
     </h1>
   </section>
 </template>

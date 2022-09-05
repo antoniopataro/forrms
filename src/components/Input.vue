@@ -1,36 +1,48 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref,watch } from "vue";
 
-defineProps({
+const props = defineProps({
   type: String,
   name: String,
   number: String,
   label: String,
   placeholder: String,
+  ml:String,
+  modelValue:String,
+  length : Number
+  
 });
 
 const isValid = ref();
-
+const input = ref('0')
+const emit = defineEmits(['update:modelValue', 'eventB'])
+watch(input,(val)=>{
+  emit('update:modelValue',val)
+})
 const handleInput = (e: any) => {
-  const input = e.target.value;
+  
+  input.value = e.target.value;
 
   if (!input) {
     isValid.value = false;
     return;
   }
 
-  isValid.value = true;
+  isValid.value = props.length ? input.value.length === props.length ? true : false :  true;
 };
+watch(() => props.modelValue, (val)=>{
+  input.value = val
+},{immediate:true})
 </script>
 
 <template>
   <li class="group z-10 flex w-full gap-8">
     <span
-      class="flex min-w-[24px] w-min min-h-[24px] h-min items-center justify-center ring-1 ring-fgVar rounded bg-fg font-medium text-xs transition-all group-focus-within:ring-primary"
+      class=" flex min-w-[24px] w-min min-h-[24px] h-min items-center justify-center ring-1 ring-fgVar rounded bg-fg font-medium text-xs transition-all group-focus-within:ring-primary"
       :class="{ 'ring-primary': isValid }"
       >{{ number }}</span
     >
-    <div class="flex flex-col w-full gap-2">
+    <div class="flex flex-col w-full gap-2" :class="ml ? 'ml-' +ml : 'ml-2'">
       <label for="name" class="font-medium text-sm">{{ label }}</label>
       <input
         :autocomplete="type"
@@ -40,6 +52,7 @@ const handleInput = (e: any) => {
         :class="{ 'outline-offset-0 outline-1 outline-primary': isValid }"
         @blur="handleInput"
         :placeholder="placeholder"
+        v-model="input"
       />
     </div>
   </li>
