@@ -1,12 +1,10 @@
-# forrms
+#### About
+I wanted to build a form wrapper npm package with Vue.js, but turns out I didn't got time to invest on it.
 
-i wanted to build a form wrapper npm package with vue.js, but turns out i didn't got time to.
+Therefore, this is a small project I intend to finish someday, which was built mainly to help me learn Vue.js and break my previous React monogamy.
 
-this is a small project i intent to finish someday, which i built mainly to learn vue.js and break my react.js monogamy.
-
-### stack and dependencies:
-
-- tailwindcss w/ postcss
-- typescript
-- vite
-- vue.js
+#### Tech
+- tailwindcss w/ postcss;
+- typescript;
+- vite;
+- vue.js.
